@@ -9,6 +9,6 @@ export class Client {
   protected http = inject(HttpClient);
 
   getClientIp = (): Observable<any> => {
-    return this.http.get<any>('/api/v1/todos/clientIp');
+    return this.http.get<any>('http://192.168.1.68:8000/api/v1/todos/clientIp');
   };
 }

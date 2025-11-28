@@ -19,7 +19,6 @@ export class App implements OnInit {
 
   public getClientIp = () => {
     this.clientApi.getClientIp().subscribe((response) => {
-      console.log(window.location.hostname);
       console.log(response.client_data);
       this.clientIp = response.client_data;
     });
