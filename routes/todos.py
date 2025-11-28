@@ -67,5 +67,5 @@ async def delete_todo(
 async def get_client_ip(data: Request):
     print(data.headers)
     return {
-        'client_data': data.headers.get('host')
+        'client_data': data.headers
     }
