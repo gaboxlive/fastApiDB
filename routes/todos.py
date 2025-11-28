@@ -59,7 +59,13 @@ async def delete_todo(
 
 @route.get("/clientIp", status_code=status.HTTP_200_OK)
 async def get_client_ip(data: Request):
-    print(data.headers)
     return {
-        'client_data': data.headers.get('host')
+        'client_data': data.client.host
     }
+
+#@route.get("/clientIp", status_code=status.HTTP_200_OK)
+#async def get_client_ip(data: Request):
+#    print(data.headers)
+#    return {
+#        'client_data': data.headers.get('host')
+#    }
