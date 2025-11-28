@@ -6,7 +6,7 @@ import { Client } from './api/client';
   selector: 'app-root',
   imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
 export class App implements OnInit {
   protected readonly title = signal('angular-app');
@@ -18,9 +18,10 @@ export class App implements OnInit {
   }
 
   public getClientIp = () => {
-    this.clientApi.getClientIp().subscribe(response => {
+    this.clientApi.getClientIp().subscribe((response) => {
+      console.log(window.location.hostname);
+      console.log(response.client_data);
       this.clientIp = response.client_data;
-    })
-  }
-
+    });
+  };
 }

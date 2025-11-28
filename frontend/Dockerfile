@@ -22,7 +22,7 @@ COPY --from=build /app/dist/angular-app/browser /usr/share/nginx/html
 
 # Copy custom Nginx configuration (optional, but recommended for Angular apps)
 # Create an 'nginx' directory in your project root with a 'default.conf' file
-COPY nginx/default.conf /etc/nginx/conf.d/default.conf
+#COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 
 # Expose port 80 for Nginx
 EXPOSE 80

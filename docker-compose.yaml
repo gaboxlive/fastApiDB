@@ -1,0 +1,39 @@
+services:
+  # Nginx as reverse proxy
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "9000:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/nginx.conf
+      - ./frontend-dist:/usr/share/nginx/html
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  # Angular Frontend (built static files)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend-dist:/app/dist
+    networks:
+      - app-network
+
+  # FastAPI Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - FORWARDED_ALLOW_IPS=*
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
